@@ -14,7 +14,7 @@ split {
         if (current.levelId == 3 && old.levelId == 2) {
             return true;
         }
-    } else if (timer.CurrentSplitIndex == 8) {
+    } else if (timer.CurrentSplitIndex == 8 && current.victoryCutscenePlaying == 3 && old.victoryCutscenePlaying == 2) {
         return true;
     }
 }

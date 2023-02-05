@@ -3,11 +3,6 @@ state("Toree3D") {
     int victoryCutscenePlaying : "UnityPlayer.dll", 0x0163C900, 0x0, 0x10, 0x130, 0x120, 0x50, 0xB2C;   // 2 = not playing, 3 = playing
 }
 
-init {
-    vars.running = false;
-    vars.levelNum = 1;
-}
-
 start {
     if (old.levelId == 3 && current.levelId == 2) {
         return true;
@@ -15,13 +10,11 @@ start {
 }
 
 split {
-    if (vars.levelNum <= 8) {
+    if (timer.CurrentSplitIndex <= 7) {
         if (current.levelId == 3 && old.levelId == 2) {
-            vars.levelNum++;
             return true;
         }
-    } else if (vars.levelNum == 9 && current.victoryCutscenePlaying == 3) {
-        vars.running = false;
+    } else if (timer.CurrentSplitIndex == 8) {
         return true;
     }
 }
